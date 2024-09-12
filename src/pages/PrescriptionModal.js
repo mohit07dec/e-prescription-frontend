@@ -19,6 +19,7 @@ import {
   VStack,
   HStack,
   Badge,
+  Divider,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -31,16 +32,17 @@ function PrescriptionModal({ prescription, isOpen, onClose }) {
         <ModalCloseButton color="white" />
         <ModalBody>
           <VStack align="stretch" spacing={6}>
-            <Box>
-              <Text fontSize="lg" fontWeight="bold" mb={2}>Patient Information</Text>
-              <HStack spacing={4}>
-                <Badge colorScheme="green">Name: {prescription?.patientName}</Badge>
-                <Badge colorScheme="purple">Age: {prescription?.patientAge}</Badge>
-                <Badge colorScheme="orange">Gender: {prescription?.patientGender}</Badge>
+            <Box bg="gray.50" p={4} borderRadius="md">
+              <Text fontSize="xl" fontWeight="bold" mb={3}>Patient Information</Text>
+              <HStack spacing={4} wrap="wrap">
+                <Badge colorScheme="green" p={2} borderRadius="full">Name: {prescription?.patientName}</Badge>
+                <Badge colorScheme="purple" p={2} borderRadius="full">Age: {prescription?.patientAge}</Badge>
+                <Badge colorScheme="orange" p={2} borderRadius="full">Gender: {prescription?.patientGender}</Badge>
               </HStack>
             </Box>
+            <Divider />
             <Box>
-              <Text fontSize="lg" fontWeight="bold" mb={2}>Medications</Text>
+              <Text fontSize="xl" fontWeight="bold" mb={3}>Medications</Text>
               <Table variant="simple" colorScheme="blue">
                 <Thead bg="blue.100">
                   <Tr>
@@ -54,7 +56,7 @@ function PrescriptionModal({ prescription, isOpen, onClose }) {
                 </Thead>
                 <Tbody>
                   {prescription?.medications.map((med, i) => (
-                    <Tr key={i}>
+                    <Tr key={i} _hover={{ bg: "gray.50" }}>
                       <Td><Text fontSize="sm" fontWeight="bold">{i + 1}</Text></Td>
                       <Td><Text fontWeight="medium">{med.name}</Text></Td>
                       <Td><Text fontSize="sm">{med.dosage}</Text></Td>
